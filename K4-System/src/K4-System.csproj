@@ -2,8 +2,16 @@
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
-    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <GenerateDependencyFile>true</GenerateDependencyFile>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>link</TrimMode>
     <PublishDir>./bin/K4-System/plugins/K4-System</PublishDir>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <GenerateDependencyFile>true</GenerateDependencyFile>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -13,8 +21,7 @@
   <ItemGroup>
     <PackageReference Include="CounterStrikeSharp.API" Version="*">
       <PrivateAssets>none</PrivateAssets>
-      <ExcludeAssets>runtime</ExcludeAssets>
-      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive; runtime</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MaxMind.GeoIP2" Version="*" />
     <PackageReference Include="MySqlConnector" Version="*" />
@@ -22,7 +29,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="*" />
     <Reference Include="SharedApi">
       <HintPath>../../K4-SharedApi/src/K4-SharedApi.dll</HintPath>
-      <Private>false</Private>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
