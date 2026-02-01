@@ -11,6 +11,7 @@ namespace K4System
 			serviceCollection.AddSingleton<ModuleStat>();
 			serviceCollection.AddSingleton<ModuleTime>();
 			serviceCollection.AddSingleton<ModuleUtils>();
+			serviceCollection.AddSingleton<ModuleLadder>();
 		}
 	}
 }

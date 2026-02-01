@@ -12,6 +12,7 @@
   "k4.general.availablecommands.rank": "Rank Commands",
   "k4.general.availablecommands.time": "Time Commands",
   "k4.general.availablecommands.other": "Other Commands",
+  "k4.general.availablecommands.ladder": "Ladder Commands",
   "k4.general.commandhelp": "{silver}Expected Usage: {lime}!{0} {1}",
   "k4.general.commandnoperm": "{lightred}You do not have permission to use this command.",
   "k4.general.commandserveronly": "{lightred}This command can only be used by the server.",
@@ -126,5 +127,34 @@
   "k4.phrases.shortsecond": "s",
 
   "k4.announcement.connect": "» {green}{rank} {name} {orange}has joined the server from {lightred}{country}",
-  "k4.announcement.disconnect": "» {green}{rank} {name} {orange}has left the server with {lightred}{points} points"
+  "k4.announcement.disconnect": "» {green}{rank} {name} {orange}has left the server with {lightred}{points} points",
+
+  "k4.ladder.nodata": "{lightred}No ladder data yet. Play some rounds to get ranked!",
+  "k4.ladder.connect.welcome": "{silver}Your {lime}Ladder Rankings {silver}(Weekly):",
+  "k4.ladder.connect.rankchange": "{silver}- {lime}{0}{silver}: #{1} | {2} pts {3}",
+
+  "k4.ladder.top.header": "{silver}========== {lime}{0} {silver}- {lime}{1} {silver}LADDER ==========",
+  "k4.ladder.top.line": "{silver} #{0}  {lime}{1}  {silver}|  {2} pts  |  K:{3} D:{4} ({5} KDR) {6}",
+  "k4.ladder.top.you": "{silver} #{0}  {green}YOU  {silver}|  {1} pts  |  K:{2} D:{3} ({4} KDR) {5}",
+
+  "k4.ladder.rank.header": "{silver}========== YOUR LADDER RANKINGS ({lime}{0}{silver}) ==========",
+  "k4.ladder.rank.mode": "{silver} {lime}{0}{silver}: #{1} of {2}  |  {3} pts  |  {4}",
+  "k4.ladder.rank.change.up": "{green}+{0}",
+  "k4.ladder.rank.change.down": "{red}{0}",
+  "k4.ladder.rank.change.new": "{yellow}NEW!",
+
+  "k4.ladder.stats.header": "{silver}========== {lime}{0} {silver}- {lime}{1} {silver}STATS ==========",
+  "k4.ladder.stats.position": "{silver} Position: #{0} of {1} {2}",
+  "k4.ladder.stats.points": "{silver} Points: {lime}{0} pts",
+  "k4.ladder.stats.combat": "{silver} Combat: {lime}{0} K {silver}/ {lightred}{1} D {silver}/ {yellow}{2} A {silver}({lime}{3} KDR{silver})",
+  "k4.ladder.stats.rounds": "{silver} Rounds: {lime}{0} played{silver}, {green}{1} won {silver}({2}% win rate)",
+  "k4.ladder.stats.activity": "{silver} Days Active: {lime}{0} {silver}| Current Streak: {lime}{1} days",
+  "k4.ladder.stats.best": "{silver} Best Day: {lime}+{0} pts {silver}| Avg: {lime}{1} pts/day",
+
+  "k4.ladder.menu.modes.title": "Select Game Mode",
+  "k4.ladder.menu.periods.title": "Select Time Period",
+  "k4.ladder.period.daily": "Daily (24h)",
+  "k4.ladder.period.weekly": "Weekly (7 days)",
+  "k4.ladder.period.monthly": "Monthly (30 days)",
+  "k4.ladder.period.alltime": "All Time"
 }

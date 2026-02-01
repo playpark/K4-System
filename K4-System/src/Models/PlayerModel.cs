@@ -5,6 +5,7 @@ using CounterStrikeSharp.API.Modules.Commands;
 using static K4System.ModuleRank;
 using static K4System.ModuleStat;
 using static K4System.ModuleTime;
+using static K4System.ModuleLadder;
 
 namespace K4System.Models;
 
@@ -20,6 +21,7 @@ public class K4Player
 	public RankData? rankData { get; set; }
 	public StatData? statData { get; set; }
 	public TimeData? timeData { get; set; }
+	public LadderData? ladderData { get; set; }
 	public (int killStreak, DateTime lastKillTime) KillStreak = (0, DateTime.MinValue);
 
 	public K4Player(CCSPlayerController playerController)

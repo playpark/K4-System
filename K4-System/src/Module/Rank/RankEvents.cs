@@ -126,6 +126,12 @@ namespace K4System
 			plugin.RegisterEventHandler((EventRoundMvp @event, GameEventInfo info) =>
 			{
 				ModifyPlayerPointsConnector(@event.Userid, Config.PointSettings.MVP, "k4.phrases.mvp");
+
+				// Notify ladder module
+				K4Player? k4player = plugin.GetK4Player(@event.Userid);
+				if (k4player != null)
+					plugin.NotifyLadderMVP(k4player);
+
 				return HookResult.Continue;
 			});
 
@@ -241,6 +247,10 @@ namespace K4System
 				RankData k4victimRankData = k4victim.rankData;
 				K4Player? k4attacker = plugin.GetK4Player(@event.Attacker);
 
+				// Notify ladder module of death
+				if (k4victim.IsPlayer)
+					plugin.NotifyLadderDeath(k4victim);
+
 				if (k4victim.IsPlayer)
 				{
 					k4victim.KillStreak = (0, DateTime.Now);
@@ -269,6 +279,9 @@ namespace K4System
 					}
 					else
 					{
+						// Notify ladder module of kill
+						plugin.NotifyLadderKill(k4attacker, k4victim, @event.Headshot);
+
 						string? extraInfo;
 						if (k4attacker.IsPlayer && k4victimRankData != null)
 						{

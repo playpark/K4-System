@@ -37,6 +37,9 @@ namespace K4System
 		[JsonPropertyName("module_utils")]
 		public bool ModuleUtils { get; set; } = true;
 
+		[JsonPropertyName("module_ladder")]
+		public bool ModuleLadder { get; set; } = true;
+
 		[JsonPropertyName("lvl-ranks-table")]
 		public bool LevelRanksCompatibility { get; set; } = false;
 
@@ -133,6 +136,28 @@ namespace K4System
 		{
 			"admins",
 			"listadmins"
+		};
+
+		[JsonPropertyName("ladder-commands")]
+		public List<string> LadderCommands { get; set; } = new List<string>
+		{
+			"ladder",
+			"laddertop"
+		};
+
+		[JsonPropertyName("ladderrank-commands")]
+		public List<string> LadderRankCommands { get; set; } = new List<string>
+		{
+			"ladderrank",
+			"lr",
+			"myladder"
+		};
+
+		[JsonPropertyName("ladderstats-commands")]
+		public List<string> LadderStatsCommands { get; set; } = new List<string>
+		{
+			"ladderstats",
+			"ls"
 		};
 	}
 
@@ -382,6 +407,45 @@ namespace K4System
 		public bool PlaytimeRewardAFK { get; set; } = false;
 	}
 
+	public sealed class LadderSettings
+	{
+		[JsonPropertyName("game-type")]
+		public string GameType { get; set; } = "standard";
+
+		[JsonPropertyName("variation")]
+		public string? Variation { get; set; } = null;
+
+		[JsonPropertyName("server-id")]
+		public string ServerId { get; set; } = "";
+
+		[JsonPropertyName("server-name")]
+		public string ServerName { get; set; } = "K4 Server";
+
+		[JsonPropertyName("show-rank-change-on-connect")]
+		public bool ShowRankChangeOnConnect { get; set; } = true;
+
+		[JsonPropertyName("ladder-periods")]
+		public List<string> LadderPeriods { get; set; } = new List<string>
+		{
+			"daily",
+			"weekly",
+			"monthly",
+			"alltime"
+		};
+
+		[JsonPropertyName("score-refresh-seconds")]
+		public int ScoreRefreshSeconds { get; set; } = 180;
+
+		[JsonPropertyName("leaderboard-cache-seconds")]
+		public int LeaderboardCacheSeconds { get; set; } = 30;
+
+		[JsonPropertyName("daily-retention-days")]
+		public int DailyRetentionDays { get; set; } = 365;
+
+		[JsonPropertyName("snapshot-retention-days")]
+		public int SnapshotRetentionDays { get; set; } = 90;
+	}
+
 	public sealed class PluginConfig : BasePluginConfig
 	{
 		[JsonPropertyName("general-settings")]
@@ -405,7 +469,10 @@ namespace K4System
 		[JsonPropertyName("point-settings")]
 		public PointSettings PointSettings { get; set; } = new PointSettings();
 
+		[JsonPropertyName("ladder-settings")]
+		public LadderSettings LadderSettings { get; set; } = new LadderSettings();
+
 		[JsonPropertyName("ConfigVersion")]
-		public override int Version { get; set; } = 13;
+		public override int Version { get; set; } = 14;
 	}
 }

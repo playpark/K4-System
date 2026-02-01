@@ -86,31 +86,34 @@ namespace K4System
             ModifyPlayerPoints(k4player, amount, reason, extraInfo);
         }
 
-        public void ModifyPlayerPoints(K4Player k4player, int amount, string reason, string? extraInfo = null)
-        {
-            if (!IsPointsAllowed())
-                return;
+		public void ModifyPlayerPoints(K4Player k4player, int amount, string reason, string? extraInfo = null)
+		{
+			if (!IsPointsAllowed())
+				return;
 
-            if (!k4player.IsValid || !k4player.IsPlayer)
-                return;
+			if (!k4player.IsValid || !k4player.IsPlayer)
+				return;
 
-            RankData? playerData = k4player.rankData;
+			RankData? playerData = k4player.rankData;
 
-            if (playerData is null)
-                return;
+			if (playerData is null)
+				return;
 
-            if (Config.RankSettings.RoundEndPoints && plugin.GameRules != null && !plugin.GameRules.WarmupPeriod)
-                playerData.RoundPoints += amount;
+			if (Config.RankSettings.RoundEndPoints && plugin.GameRules != null && !plugin.GameRules.WarmupPeriod)
+				playerData.RoundPoints += amount;
 
-            if (amount == 0)
-                return;
+			if (amount == 0)
+				return;
 
-            if (amount > 0 && AdminManager.PlayerHasPermissions(k4player.Controller, "@k4system/vip/points-multiplier"))
-            {
-                amount = (int)Math.Round(amount * Config.RankSettings.VipMultiplier);
-            }
+			if (amount > 0 && AdminManager.PlayerHasPermissions(k4player.Controller, "@k4system/vip/points-multiplier"))
+			{
+				amount = (int)Math.Round(amount * Config.RankSettings.VipMultiplier);
+			}
 
-            playerData.Points += amount;
+			playerData.Points += amount;
+
+			// Notify ladder module of points change
+			plugin.NotifyLadderPointsChanged(k4player, amount, reason);
 
             Server.NextFrame(() =>
             {

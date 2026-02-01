@@ -10,9 +10,10 @@ namespace K4System
 	using CounterStrikeSharp.API.Modules.Utils;
 	using K4System.Models;
 	using Microsoft.Extensions.Logging;
-	using static K4System.ModuleRank;
-	using static K4System.ModuleStat;
-	using static K4System.ModuleTime;
+using static K4System.ModuleRank;
+using static K4System.ModuleStat;
+using static K4System.ModuleTime;
+using static K4System.ModuleLadder;
 
 	public sealed partial class Plugin : BasePlugin
 	{
@@ -56,6 +57,18 @@ namespace K4System
 					string timeLocale = Localizer["k4.general.availablecommands.time"];
 
 					commandCategories[timeLocale] = [.. commands.TimeCommands];
+				}
+
+				if (Config.GeneralSettings.ModuleLadder)
+				{
+					string ladderLocale = Localizer["k4.general.availablecommands.ladder"];
+
+					commandCategories[ladderLocale] =
+					[
+						.. commands.LadderCommands,
+						.. commands.LadderRankCommands,
+						.. commands.LadderStatsCommands,
+					];
 				}
 
 				string otherLocale = Localizer["k4.general.availablecommands.other"];
