@@ -11,6 +11,31 @@ namespace K4System
 
 	public partial class ModuleRank : IModuleRank
 	{
+		private Dictionary<K4Player, int> _roundKills = [];
+
+		private void CalculatePointsForKills()
+		{
+			foreach (var player in _roundKills.Keys)
+			{
+				if (!player.IsValid) continue;
+				ModifyPlayerPoints(player, RoundKills(_roundKills[player]), "");
+			}
+		}
+
+		private int RoundKills(int number)
+		{
+			return number switch
+			{
+				0 => 0,
+				1 => 0,
+				2 => 2,
+				3 => 3,
+				4 => 4,
+				5 => 5,
+				_ => 0
+			};
+		}
+		
 		public void Initialize_Events()
 		{
 			plugin.RegisterEventHandler((EventPlayerTeam @event, GameEventInfo info) =>
@@ -49,6 +74,8 @@ namespace K4System
 					return HookResult.Continue;
 
 				SetPlayerClanTag(k4player);
+				
+				_roundKills.Add(k4player, 0);
 				return HookResult.Continue;
 			});
 
@@ -83,6 +110,8 @@ namespace K4System
 					return HookResult.Continue;
 
 				ModifyPlayerPoints(k4player, Config.PointSettings.BombDefused, "k4.phrases.bombdefused");
+				CalculatePointsForKills();
+
 
 				var players = plugin.K4Players.Where(p => p.IsValid && p.IsPlayer && p.Controller.Team == CsTeam.CounterTerrorist && p != k4player);
 				foreach (K4Player player in players)
@@ -107,6 +136,7 @@ namespace K4System
 					{
 						ModifyPlayerPoints(k4player, Config.PointSettings.BombExploded, "k4.phrases.bombexploded");
 					}
+					CalculatePointsForKills();
 				}
 				return HookResult.Continue;
 			});
