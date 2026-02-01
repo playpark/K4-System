@@ -1,3 +1,6 @@
+using CounterStrikeSharp.API.Modules.Admin;
+using CounterStrikeSharp.API.Modules.Utils;
+
 namespace K4System;
 
 using CounterStrikeSharp.API;
@@ -20,11 +23,16 @@ public partial class ModuleLadder : IModuleLadder
 			if (k4player == null)
 				return HookResult.Continue;
 
+			if (!AdminManager.PlayerHasPermissions(player, "@css/vip"))
+			{
+				k4player.Controller.PrintToChat($" {plugin.Localizer["k4.ladder.warning"]} {plugin.Localizer["k4.ladder.connect.intevip"]}");
+			}
+			
 			// Load ladder data async and show connect message
 			Task.Run(async () =>
 			{
 				await LoadPlayerLadderDataAsync(k4player);
-
+				
 				// Show rank change message on connect
 				if (Config.LadderSettings.ShowRankChangeOnConnect && k4player.ladderData != null)
 				{

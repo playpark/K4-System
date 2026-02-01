@@ -150,6 +150,8 @@
   "k4.ladder.stats.rounds": "{silver} Rounds: {lime}{0} played{silver}, {green}{1} won {silver}({2}% win rate)",
   "k4.ladder.stats.activity": "{silver} Days Active: {lime}{0} {silver}| Current Streak: {lime}{1} days",
   "k4.ladder.stats.best": "{silver} Best Day: {lime}+{0} pts {silver}| Avg: {lime}{1} pts/day",
+  "k4.ladder.connect.intevip": "{silver} You are not eligible to place in the ladder, you need to get {gold} VIP!",
+  "k4.ladder.warning": "{darkred} WARNING |", 
 
   "k4.ladder.menu.modes.title": "Select Game Mode",
   "k4.ladder.menu.periods.title": "Select Time Period",
