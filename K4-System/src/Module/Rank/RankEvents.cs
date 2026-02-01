@@ -256,7 +256,9 @@ namespace K4System
 						if (Config.RankSettings.PointsForBots || k4attacker.IsPlayer)
 						{
 							string? extraInfo = Config.RankSettings.PlayerNameKillMessages ? plugin.Localizer["k4.phrases.dying.extra", k4attacker.PlayerName, k4attackerRankData.Points] : null!;
-							ModifyPlayerPoints(k4victim, CalculateDynamicPoints(k4attacker, k4victim, Config.PointSettings.Death), "k4.phrases.dying", extraInfo);
+							var weapon = k4attacker.Controller.PlayerPawn.Value.WeaponServices.ActiveWeapon.Value.As<CCSWeaponBase>().VData.WeaponType;
+							
+							ModifyPlayerPoints(k4victim, CalculatePoints(weapon) * -1, "k4.phrases.dying", extraInfo);
 						}
 					}
 				}
@@ -278,7 +280,10 @@ namespace K4System
 						{
 							extraInfo = Config.RankSettings.PlayerNameKillMessages ? plugin.Localizer["k4.phrases.kill.extra", k4victim.PlayerName, 0] : null!;
 						}
-						ModifyPlayerPoints(k4attacker, CalculateDynamicPoints(k4attacker, k4victim, Config.PointSettings.Kill), "k4.phrases.kill", extraInfo);
+
+						var weapon = k4attacker.Controller.PlayerPawn.Value.WeaponServices.ActiveWeapon.Value.As<CCSWeaponBase>().VData.WeaponType;
+
+						ModifyPlayerPoints(k4attacker, CalculatePoints(weapon), "k4.phrases.kill", extraInfo);
 
 						if (@event.Headshot)
 						{
@@ -410,5 +415,33 @@ namespace K4System
 				return HookResult.Continue;
 			});
 		}
+		
+		private int CalculatePoints(CSWeaponType type)
+		{
+			if (type == CSWeaponType.WEAPONTYPE_RIFLE)
+			{
+				return 4;
+			}
+				
+			if (type == CSWeaponType.WEAPONTYPE_PISTOL)
+			{
+				return 6;
+			}
+				
+			if (type == CSWeaponType.WEAPONTYPE_SNIPER_RIFLE)
+			{
+				return 2;
+			}
+
+			if (type == CSWeaponType.WEAPONTYPE_KNIFE)
+				return 10;
+
+			if (type == CSWeaponType.WEAPONTYPE_GRENADE)
+				return 2;
+				
+			return 2;
+		}
+		
 	}
+	
 }
