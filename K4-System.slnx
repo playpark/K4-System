@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/K4-SharedApi/" />
+  <Folder Name="/K4-SharedApi/src/">
+    <Project Path="K4-SharedApi/src/K4-SharedApi.csproj" />
+  </Folder>
+  <Folder Name="/K4-System/" />
+  <Folder Name="/K4-System/src/">
+    <Project Path="K4-System/src/K4-System.csproj" />
+  </Folder>
+</Solution>
